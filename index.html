@@ -71,6 +71,10 @@
         const turn = ["X", "O"]
         var move = 0
         var x = 1
+        function refresh(){
+            location.reload()
+        }
+
         function boardvalue(board, i, j) {
             board.forEach(Element => {
                 Element.forEach(element => {
@@ -141,6 +145,7 @@
                 setTimeout(() => {
                     alert("The Game is a Draw !")
                     x = 0
+                    refresh()
                 }, 100)
             }
             for (let k = 0; k < remaining_moves.length; k++) {
@@ -210,6 +215,7 @@
                 setTimeout(() => {
                     alert("Player " + pl + " wins !")
                     x = 0
+                    refresh()
                 }, 100)
             }
 
