@@ -71,7 +71,7 @@
         const turn = ["X", "O"]
         var move = 0
         var x = 1
-        function refresh(){
+        function refresh() {
             location.reload()
         }
 
@@ -84,6 +84,7 @@
             });
         }
         function updateboard(n, board) {
+            x = 1
             let boardval = Number(n.substring(3)) - 1;
             let row = Math.floor(boardval / 3);
             let col = boardval % 3;
@@ -91,7 +92,19 @@
                 board[row][col] = turn[move % 2];
                 boardvalue(board, row, col)
                 move += 1
-                AiMove(board)
+                if (CheckWin()) {
+                    let pl = turn[(move + 1) % 2]
+                    x = 0
+                    console.log(pl, turn[(move + 1) % 2], "hbdhs")
+                    setTimeout(() => {
+                        alert("Player " + pl + " wins !")
+                        
+                        refresh()
+                    }, 100)
+                }
+                if(x==1){
+                    AiMove(board)}
+                 
             }
             else {
                 console.log("invalid move !")
@@ -190,7 +203,6 @@
                     }
                 }
                 let x = Math.floor(Math.random() * arr.length)
-                console.log(arr[x], "array      ")
                 if (arr.length > 0) {
                     let [i, j] = arr[x]
                     board[i][j] = turn[move % 2];
@@ -212,17 +224,13 @@
 
             if (CheckWin()) {
                 let pl = turn[(move + 1) % 2]
+                console.log(pl, turn[(move + 1) % 2], "hbdhs")
                 setTimeout(() => {
                     alert("Player " + pl + " wins !")
                     x = 0
                     refresh()
                 }, 100)
             }
-
-            console.log(remaining_moves, "reamingn")
-           
-
-
         }
 
     </script>
